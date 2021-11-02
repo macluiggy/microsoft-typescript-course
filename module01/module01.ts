@@ -31,3 +31,12 @@ let firstName: string = "Mateo";
 let sentence: string = `My name is ${firstName}.
     I am new to TypeScript.`;
 console.log(sentence);
+
+//usin enums
+enum ContractStatus {
+  Permanent,
+  Temp,
+  Apprentice
+}
+let employeeStatus: ContractStatus = ContractStatus.Temp
+console.log(ContractStatus[employeeStatus])
