@@ -132,3 +132,4 @@ function isOdd(x: number): isOddOptions {
 console.log(isOdd(2));
 console.log(isOdd(3));
 console.log(isOdd(0));
+//comentario añadido, se usara cherry pick para añadirlo a la rama main
