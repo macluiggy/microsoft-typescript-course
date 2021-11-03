@@ -89,7 +89,11 @@ myResult = 20;
 let diceRoll;
 diceRoll = 1; //* Valid
 diceRoll = 2; //* Valid
-console.log(isOdd(2));
-console.log(isOdd(3));
-console.log(isOdd(0));
+function haveDecimals(x) {
+    const newLocal = x / 2;
+    return x / 2 === 0 ? "number must not be zero" : !(Math.floor(newLocal) === x / 2);
+}
+console.log(haveDecimals(2));
+console.log(haveDecimals(3));
+console.log(haveDecimals(0));
 //comentario añadido, se usara cherry pick para añadirlo a la rama main

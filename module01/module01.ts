@@ -106,7 +106,7 @@ let newManager: ManagementEmployee = {
 
 // LITERAL TYPES
 //los literal types hacen que el typo de valor se simplifique a solo unos cuantos
-//dado que 'hello world' es un string pero string no es 'hello world'
+//dado que 'hello world' es un string pero string no necesariamente es 'hello world'
 // aqui este typo dice que el valor de my result solo pueden ser esos string o cualquier numero
 type testResult = "pass" | "fail" | "incomplete" | number;
 let myResult: testResult;
@@ -121,14 +121,26 @@ diceRoll = 1; //* Valid
 diceRoll = 2; //* Valid
 //diceRoll = 7;    //* Invalid
 
-type isOddOptions = true | false | "number must not be zero";
+type haveDecimalsOptions = true | false | "number must not be zero";
 
-function isOdd(x: number): isOddOptions {
+function haveDecimals(x: number): haveDecimalsOptions {
   const newLocal = x / 2;
-  return x / 2 === 0 ? "number must not be zero" : Math.floor(newLocal) === x / 2;
+  return x / 2 === 0 ? "number must not be zero" : !(Math.floor(newLocal) === x / 2);
 }
 
-console.log(isOdd(2));
-console.log(isOdd(3));
-console.log(isOdd(0));
+console.log(haveDecimals(2));
+console.log(haveDecimals(3));
+console.log(haveDecimals(0));
 //comentario añadido, se usara cherry pick para añadirlo a la rama main
+
+//COLLECTION TYPES IN TYPESCRIPT
+let list: number[] = [1, 2, 3];
+let list2: Array<number> = [1, 2, 3];
+
+//los tuples te permiten poner mas de un typo a un array, estos tienen que estar en la misma posicion
+//que el valor que le corresponde
+let person1: [string, number] = ['Marcia', 35,];
+// pero si el array es muy grande y sabes que van a haber typos por ejemplo string y number, se puede
+// usar la sintaxis (type1 | type2 | ... | typen)[] o la sintaxis Array<type1 | type2 | ... | typen>
+let list_beta: (number | string)[] = [1, 2, '3'];
+let list2_beta: Array<number | string> = [1, 2, '3'];

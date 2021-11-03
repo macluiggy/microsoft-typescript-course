@@ -1,0 +1,3 @@
+[submodule "mslearn-typescriptt"]
+	path = mslearn-typescriptt
+	url = https://github.com/MicrosoftDocs/mslearn-typescript
