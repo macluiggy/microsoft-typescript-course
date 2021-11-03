@@ -125,8 +125,7 @@ type isOddOptions = true | false | "number must not be zero";
 
 function isOdd(x: number): isOddOptions {
   const newLocal = x / 2;
-  console.log(typeof newLocal)
-  return x / 2 === 0 ? "number must not be zero" : parseInt(newLocal) === x / 2;
+  return x / 2 === 0 ? "number must not be zero" : Math.floor(newLocal) === x / 2;
 }
 
 console.log(isOdd(2));

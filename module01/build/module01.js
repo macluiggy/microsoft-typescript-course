@@ -89,11 +89,7 @@ myResult = 20;
 let diceRoll;
 diceRoll = 1; //* Valid
 diceRoll = 2; //* Valid
-function isOdd(x) {
-    const newLocal = x / 2;
-    console.log(typeof parseInt(newLocal));
-    return x / 2 === 0 ? "number must not be zero" : parseInt(newLocal) === x / 2;
-}
 console.log(isOdd(2));
 console.log(isOdd(3));
 console.log(isOdd(0));
+//comentario añadido, se usara cherry pick para añadirlo a la rama main
