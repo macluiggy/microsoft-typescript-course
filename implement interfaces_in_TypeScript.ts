@@ -5,23 +5,71 @@ interface Employee2 {
     fullName(): string;
 }
 let employee: Employee2 = {
-    firstName : "Emil",
+    firstName: "Emil",
     lastName: "Andersson",
-    fullName: function(): string {
+    fullName: function (): string {
         return this.firstName + " " + this.lastName;
-    }
-}
+    },
+};
 
-employee.firstName = 10;  //* Error - Type 'number' is not assignable to type 'string'
-console.log(employee.fullName())
+//employee.firstName = 10;  //* Error - Type 'number' is not assignable to type 'string'
+console.log(employee.fullName());
 
 interface ValueReturned {
-    name: string,
-    age: number
+    name: string;
+    age: number;
 }
 
 function userData(age: number, name: string): ValueReturned {
-    return { age, name }
+    return { age, name };
 }
 
-console.log(userData(182828, 'elver'))
+console.log(userData(182828, "elver"));
+//la diferencia entre el type alias y las interfaces, es que type se usa para definir el tipo de datos
+//ya sea uno o varios como en un objeto, mientras que las interfaces se usan para definir la forma que
+//tienen los datos, por ejemplo, de un objeto
+type Hola = {
+    hello: string;
+};
+interface Mia {
+    mine: number;
+}
+//en ambos casos se pueden acceder a los typos como si fueran objetos con la sintaxis obj[key] = typo
+let hola: Hola["hello"];
+let mine: Mia["mine"];
+function holaUser(hola: Hola["hello"], mia: Mia["mine"]) {
+    return mia + hola;
+}
+
+//type Saluda = Mia['mine'] & Hola['hello']
+type Saluda = Mia & Hola;
+
+let compa: Saluda = {
+    hello: "perro",
+    mine: 344,
+};
+
+interface elmsOfArrays {
+    arr1: number[];
+    arr2: Array<string>;
+    arr3: boolean[];
+}
+type elmsOfArrays2 = {
+    arr1: number[];
+    arr2: Array<string>;
+};
+
+let elmsOfArrays: elmsOfArrays = {
+    arr1: [1, 2, 4, 8],
+    arr2: ["que mas", "hello"],
+    arr3: [0 > 0, 4 < 3, !"", true, false],
+};
+let elmsOfArrays2: elmsOfArrays2 = {
+    arr1: [1, 2, 4, 8],
+    arr2: ["que mas", "hello"],
+};
+
+interface IceCream {
+    flavor: string;
+    scoops: number;
+}
