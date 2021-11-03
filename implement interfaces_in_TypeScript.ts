@@ -72,4 +72,32 @@ let elmsOfArrays2: elmsOfArrays2 = {
 interface IceCream {
     flavor: string;
     scoops: number;
+    instructions?: string,
 }
+interface Sundae extends IceCream {
+    sauce: 'chocolate' | 'caramel' | 'strawberry',
+    nuts?: boolean,
+    whippedCream?: boolean,
+    instructions?: string,
+}
+let iceCream: IceCream = {
+    flavor: 'vanilla',
+    scoops: 2,
+}
+let myIceCream: Sundae = {
+    flavor: 'vanilla',
+    scoops: 2,
+    sauce: 'caramel',
+    nuts: false
+}
+console.log(iceCream.flavor);
+function tooManyScoops(dessert: Sundae) {
+    const { scoops } = dessert
+   if (scoops >= 4) {
+      return scoops + ' is too many scoops!';
+   } else {
+      return 'Your order will be ready soon!';
+   }
+}
+let dessert: Sundae = {flavor: 'vanilla', scoops: 5, sauce: 'caramel'}
+console.log(tooManyScoops(dessert));
