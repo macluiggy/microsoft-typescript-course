@@ -3,7 +3,7 @@ function addNumbers(x: number, y: number) {
 }
 console.log(addNumbers(4, 6));
 
-let a;
+//let a;
 
 function hello() {
   let a;
@@ -85,7 +85,7 @@ function add(x: number | string, y: number | string) {
 }
 console.log(add("one", "two")); //* Returns "onetwo"
 console.log(add(1, 2)); //* Returns 3
-console.log(add("one", 2)); //* Returns error
+//console.log(add("one", 2)); //* Returns error
 
 // INTERSECTION TYPES
 // estas sirven para que un typo tenga dos o mas typos predefinidos, se suelen usar con interfaces
@@ -105,3 +105,30 @@ let newManager: ManagementEmployee = {
 };
 
 // LITERAL TYPES
+//los literal types hacen que el typo de valor se simplifique a solo unos cuantos
+//dado que 'hello world' es un string pero string no es 'hello world'
+// aqui este typo dice que el valor de my result solo pueden ser esos string o cualquier numero
+type testResult = "pass" | "fail" | "incomplete" | number;
+let myResult: testResult;
+myResult = "pass";
+myResult = "incomplete";
+//myResult = 'failure' // Invalid
+myResult = 20;
+
+type dice = 1 | 2 | 3 | 4 | 5 | 6;
+let diceRoll: dice;
+diceRoll = 1; //* Valid
+diceRoll = 2; //* Valid
+//diceRoll = 7;    //* Invalid
+
+type isOddOptions = true | false | "number must not be zero";
+
+function isOdd(x: number): isOddOptions {
+  const newLocal = x / 2;
+  console.log(typeof newLocal)
+  return x / 2 === 0 ? "number must not be zero" : parseInt(newLocal) === x / 2;
+}
+
+console.log(isOdd(2));
+console.log(isOdd(3));
+console.log(isOdd(0));
