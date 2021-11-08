@@ -13,7 +13,7 @@ let employee: Employee2 = {
 };
 
 //employee.firstName = 10;  //* Error - Type 'number' is not assignable to type 'string'
-console.log(employee.fullName());
+//console.log(employee.fullName());
 
 interface ValueReturned {
     name: string;
@@ -24,7 +24,7 @@ function userData(age: number, name: string): ValueReturned {
     return { age, name };
 }
 
-console.log(userData(182828, "elver"));
+//console.log(userData(182828, "elver"));
 //la diferencia entre el type alias y las interfaces, es que type se usa para definir el tipo de datos
 //ya sea uno o varios como en un objeto, mientras que las interfaces se usan para definir la forma que
 //tienen los datos, por ejemplo, de un objeto
@@ -90,7 +90,7 @@ let myIceCream: Sundae = {
     sauce: 'caramel',
     nuts: false
 }
-console.log(iceCream.flavor);
+//console.log(iceCream.flavor);
 function tooManyScoops(dessert: Sundae) {
     const { scoops } = dessert
    if (scoops >= 4) {
@@ -100,4 +100,44 @@ function tooManyScoops(dessert: Sundae) {
    }
 }
 let dessert: Sundae = {flavor: 'vanilla', scoops: 5, sauce: 'caramel'}
-console.log(tooManyScoops(dessert));
+//console.log(tooManyScoops(dessert));
+
+//esto quiere indicar que IceCreamArray esta indexado por un numero y este retorna un string
+interface IceCreamArray {
+    [index: number]: string;
+}
+
+let myIceCream2: IceCreamArray;
+myIceCream2 = ['chocolate', 'vanilla', 'strawberry']
+let myStr: string = myIceCream2[0]
+
+
+import axios from 'axios';
+
+const fetchURL = 'https://jsonplaceholder.typicode.com/posts'
+// Interface describing the shape of our json data
+interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}
+async function fetchPosts(url: string) {
+    let response = await fetch(url);
+    let body = await response.json();
+    return body as Post[];//aqui dice que retorne el array body, y que cada elemento tenga la estructura de la interface Post[]
+}
+async function showPost() {
+    let posts = await fetchPosts(fetchURL);
+    // Display the contents of the first item in the response
+    let post = posts[0];
+    console.log('Post #' + post.id)
+    // If the userId is 1, then display a note that it's an administrator
+    console.log('Author: ' + (post.userId === 1 ? "Administrator" : post.userId.toString()))
+    console.log('Title: ' + post.title)
+    console.log('Body: ' + post.body)
+}
+
+//showPost();
+
+console.log('heehhe');
