@@ -114,4 +114,15 @@ let subsxd = doCalculation('add')
 console.log(subsxd(1,2));
 console.log(doCalculation('subtract')(2,2));
 
+// las siguientes funciones se consideran iguales
+interface Saluda {
+    (name: string, msg: string): string;
+}
+type Saluda2 = (a: string, b: string) => string
+//se pueden usar cualquiera de los dos, ya sea la interface o el type, los nombres de los parametros no
+//tienen necesariamente que ser iguales a los de el type o interface solo el typo tiene que ser iguales, pero
+//los typos se pueden descartar si la variable se le asigna el type o la interface
+let saluda: Saluda | Saluda2 = (name: string, msg: string): string => `Message from ${name}: ${msg}`
+let saluda2: Saluda | Saluda2 = (nombre: string, mensaje: string): string => `Message from ${nombre}: ${mensaje}`
+let saluda3: Saluda | Saluda2 = (namexd, msgxd) => `Message from ${namexd}: ${msgxd}`
 
