@@ -63,3 +63,32 @@ var addAllNumbers = function (firstNumber) {
     return restOfNumbers.reduce(function (acum, arg) { return acum + arg; }, firstNumber);
 };
 console.log(addAllNumbers(1, 2, 3));
+//lo de abajo permite poner varios parametros dentros de un objeto, sin tener que lidiar con el problema
+//de que si son opcionales o no, ya que aqui el orden en el que se pone ? para que sean opcionales no importa
+//y este se hace en la interface o el typo, lo unico es que el numbre tiene que ser el mismo que se le da en
+//la interface para que reconozca cual es cual, sin importar el orden en que se ponga
+function displayMessage(_a) {
+    var text = _a.text, sender = _a.sender;
+    console.log("Message from " + sender + ": " + text);
+}
+displayMessage({ sender: 'Christopher', text: 'hello, world' });
+// Exercise - Fun with parameters
+var addThreeNumbers = function (x, y, z) { return z ? x + y + z : x + y; };
+console.log(addThreeNumbers(1, 3)); //retorna NaN oprque la operacion es invalida
+console.log(addThreeNumbers(1, 2, 3, 4)); //retorna 6 aunque se pasen mas argumentos de los necesarios, debido a que esto es hecho por javascript y si se pasan los argumentos necesarions como de parametros a javascript no le importa los que sobran, pero typescript si muestra el error
+var subtractThreeNumbers = function (x, y, z) {
+    if (z === void 0) { z = 100; }
+    return x - y - z;
+};
+subtractThreeNumbers(10, 20); // returns -110 because 'z' has been assigned the value 100
+subtractThreeNumbers(10, 20, 15); // returns -25
+var addNumbers7 = function (x, y) { return x + y; };
+var substractNumbers7 = function (x, y) { return x - y; };
+//console.log(addNumbers7(1,2));
+//console.log(substractNumbers7(2,1));
+var doCalculation = function (operation) {
+    return operation === 'add' ? addNumbers7 : substractNumbers7;
+};
+var subsxd = doCalculation('add');
+console.log(subsxd(1, 2));
+console.log(doCalculation('subtract')(2, 2));

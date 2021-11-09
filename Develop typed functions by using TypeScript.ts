@@ -86,3 +86,32 @@ interface Message {
  }
  
  displayMessage({sender: 'Christopher', text: 'hello, world'});
+
+ // Exercise - Fun with parameters
+ let addThreeNumbers = (x: number, y: number, z?: number): number => z ? x + y + z : x + y;
+console.log( addThreeNumbers(1,3,)); //retorna NaN oprque la operacion es invalida
+console.log(addThreeNumbers(1,2,3,4)); //retorna 6 aunque se pasen mas argumentos de los necesarios, debido a que esto es hecho por javascript y si se pasan los argumentos necesarions como de parametros a javascript no le importa los que sobran, pero typescript si muestra el error
+
+let subtractThreeNumbers = (x: number, y: number, z = 100): number => x - y - z;
+subtractThreeNumbers(10, 20);       // returns -110 because 'z' has been assigned the value 100
+subtractThreeNumbers(10, 20, 15);   // returns -25
+
+//   Exercise - Define function types
+
+//type calculator = (x: number, y: number) => number
+//se puede notar que en la inerface el cambio es ligero, vemos que no se usa el arrow y en vez se usa los dos puntos
+interface Calculator {
+    (x: number, y: number): number;
+}
+let addNumbers7: Calculator = (x: number, y: number): number => x + y
+let substractNumbers7: Calculator = (x: number, y: number): number => x -y;
+//console.log(addNumbers7(1,2));
+//console.log(substractNumbers7(2,1));
+
+let doCalculation = (operation: 'add' | 'subtract'): Calculator =>
+                        operation === 'add' ? addNumbers7 : substractNumbers7
+let subsxd = doCalculation('add')
+console.log(subsxd(1,2));
+console.log(doCalculation('subtract')(2,2));
+
+
