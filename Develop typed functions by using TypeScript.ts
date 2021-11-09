@@ -63,7 +63,7 @@ function addNumbers4 (x: number, y: number): number {
  function addNumbers6 (x: number, y = 25): number {
     return x + y;
  }
- 
+
  addNumbers6(1, 2);  // Returns 3
  addNumbers6(1);     // Returns 26
 
@@ -71,3 +71,18 @@ function addNumbers4 (x: number, y: number): number {
                         restOfNumbers.reduce((acum, arg) => acum + arg, firstNumber)
 
 console.log(addAllNumbers(1,2,3))
+
+interface Message {
+    text: string;
+    sender: string;
+ }
+ 
+ //lo de abajo permite poner varios parametros dentros de un objeto, sin tener que lidiar con el problema
+ //de que si son opcionales o no, ya que aqui el orden en el que se pone ? para que sean opcionales no importa
+ //y este se hace en la interface o el typo, lo unico es que el numbre tiene que ser el mismo que se le da en
+ //la interface para que reconozca cual es cual, sin importar el orden en que se ponga
+ function displayMessage({text, sender}: Message) {
+     console.log(`Message from ${sender}: ${text}`);
+ }
+ 
+ displayMessage({sender: 'Christopher', text: 'hello, world'});
