@@ -100,10 +100,6 @@ function tooManyScoops(dessert: Sundae) {
    }
 }
 let dessert: Sundae = {flavor: 'vanilla', scoops: 5, sauce: 'caramel'}
-<<<<<<< HEAD
-console.log(tooManyScoops(dessert));
-
-=======
 //console.log(tooManyScoops(dessert));
 
 //esto quiere indicar que IceCreamArray esta indexado por un numero y este retorna un string
@@ -145,4 +141,3 @@ async function showPost() {
 //showPost();
 
 console.log('heehhe');
->>>>>>> b2c9805912ed499e1331b787e5b2a1664c04b86b
