@@ -91,8 +91,7 @@ let myIceCream: Sundae = {
     nuts: false
 }
 console.log(iceCream.flavor);
-function tooManyScoops(dessert: Sundae) {
-    const { scoops } = dessert
+function tooManyScoops({scoops}: Sundae) {
    if (scoops >= 4) {
       return scoops + ' is too many scoops!';
    } else {
@@ -101,3 +100,4 @@ function tooManyScoops(dessert: Sundae) {
 }
 let dessert: Sundae = {flavor: 'vanilla', scoops: 5, sauce: 'caramel'}
 console.log(tooManyScoops(dessert));
+

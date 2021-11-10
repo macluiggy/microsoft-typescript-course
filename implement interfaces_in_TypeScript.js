@@ -35,3 +35,10 @@ var iceCream = {
     scoops: 2
 };
 console.log(iceCream.flavor);
+
+
+
+function elMacho(culosaaaeewww) {
+    return culosaaaeewww
+}
+console.log(elMacho('jajajja')); 
