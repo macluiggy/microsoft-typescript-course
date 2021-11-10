@@ -13,7 +13,7 @@ let employee: Employee2 = {
 };
 
 //employee.firstName = 10;  //* Error - Type 'number' is not assignable to type 'string'
-//console.log(employee.fullName());
+//console.log(employee.fullName());s
 
 interface ValueReturned {
     name: string;
