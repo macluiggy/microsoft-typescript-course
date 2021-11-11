@@ -55,5 +55,5 @@ var Car = /** @class */ (function () {
     return Car;
 }());
 var myCar1 = new Car('Cool Car Company', 'blue', 2);
-console.log(myCar1.color);
+//console.log(myCar1.color);//devuelve el color del carro
 console.log(myCar1._color);
