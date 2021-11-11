@@ -48,7 +48,7 @@ class Car {
     turn(direction: 'left' | 'right'): string {
         return `${this.worker()} is turning ${direction}`;
     }
-    private worker(): string {
+    protected worker(): string {
         return this._make
     }
     // static
@@ -77,3 +77,36 @@ let myCar3 = new Car('Galaxy motors', 'gray')
 // console.log(myCar3.turn('right'));
 //console.log(myCar3.worker());
 console.log(Car.getNumberOfCars()); //dara 3 ya que hasta esta linea de codigo ya se han instanciado 3 carros
+
+class ElectricCar extends Car {
+    // Properties unique to ElectricCar
+    private _range: number;
+    // Constructor
+    constructor(make: string, color: string, range: number, doors: number = 2) {
+        super(make, color, doors);
+        this._range = range;
+    }
+    
+    // Accessors
+    get range() {
+        return this._range;
+    }
+    set range(range) {
+        this._range = range;
+    }
+    // Methods
+    charge() {
+        console.log(`${this.worker()} is charging...`);
+    }
+    brake(): string {//dado que en la clase padre Car se retorna un string es este metodo, aqui tambien lo debe hacer
+        return `${this.worker()}  is braking with the regenerative braking system.`
+    }
+}
+
+let car = new ElectricCar('marca chevere', 'yellow', 4, 4)
+//console.log(Car.getNumberOfCars());
+let spark = new ElectricCar('Spark Motors','silver', 124, 2);
+let eCar = new ElectricCar('Electric Car Co.', 'black', 263);
+// console.log(eCar.doors);         // returns the default, 2
+// spark.charge();                  // returns "Spark Motors is charging"
+// console.log(spark.brake());  // returns "Spark Motors is braking with the regenerative braking system"
