@@ -56,6 +56,14 @@ class Car {
         return Car.numberOfCars;
     }
 }
+interface Vehicle {
+    make: string;
+    color: string;
+    doors: number;
+    accelerate(speed: number): string;
+    brake(): string;
+    turn(direction: 'left' | 'right'): string;
+}
 console.log(Car.getNumberOfCars());//dara 0 ya que aun no se ha instanciado ningun carro
 
 let myCar1 = new Car('Cool Car Company', 'blue', 2)
