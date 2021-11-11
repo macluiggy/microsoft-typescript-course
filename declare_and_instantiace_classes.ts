@@ -1,7 +1,16 @@
-class Car {
+interface Vehicle {
+    //la interfaz sirve para describir el tipo de dato que tendra cada elemento de la clase, ya sea para las propiedades, los parametros del constructor (que sus valores serian los argumentos al instanciar una clase), los accesors y los metodos, en este caso solo se estan definiendo los parametros del construcor y los metodos
+    make: string;
+    color: string;
+    doors: number;
+    accelerate(speed: number): string;
+    brake(): string;
+    turn(direction: 'left' | 'right'): string;
+}
+class Car implements Vehicle {
     //Properties, esta se usa para especificar el typo de la propiedad, se usa _ para diferenciarlos de los parametros que se usan en el construcor, aunque no son necesarios y puede tener el mismo nombre que los parametros
     private static numberOfCars: number = 0;
-    private _make: string;
+     _make: string;
     private _color: string;
     private _doors: number;
     // Constructor, aqui se colocan los parametros que provienen de los argumentos al instanciar la clase
@@ -56,17 +65,12 @@ class Car {
         return Car.numberOfCars;
     }
 }
-interface Vehicle {
-    make: string;
-    color: string;
-    doors: number;
-    accelerate(speed: number): string;
-    brake(): string;
-    turn(direction: 'left' | 'right'): string;
-}
+
 console.log(Car.getNumberOfCars());//dara 0 ya que aun no se ha instanciado ningun carro
 
 let myCar1 = new Car('Cool Car Company', 'blue', 2)
+console.log(myCar1);
+
 // myCar1.worker() //esto dara error ya que este solo es accecible dentro de la clase
 //console.log(myCar1.color);//este en cambio devuelve el valor que retorna el getter color
 // se podria usar/utilizar getColor como nombre del getter para evitar confuciones
