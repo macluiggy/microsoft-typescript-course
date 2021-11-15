@@ -95,7 +95,7 @@ class ElectricCar extends Car {
     private _range: number;
     // Constructor
     constructor(make: string, color: string, range: number, doors: number = 2) {
-        super(make, color, doors);
+        super(make, color, doors);//a diferencia del contructor de la linea anterior a esta, el orden aqui  importa, en el super es como si se estuviera instanciando una clase, en este caso de la clase padre, super es como si tomara argumentos, no parametros, los cuales provienen de los parametros del constructor de la clase actual, de esta forma hara que para el arg en la posicion x sea el valor de la propiedad this._prop que se encuentra el la posicion x
         this._range = range;
     }
     
@@ -119,6 +119,9 @@ let car = new ElectricCar('marca chevere', 'yellow', 4, 4)
 //console.log(Car.getNumberOfCars());
 let spark = new ElectricCar('Spark Motors','silver', 124, 2);
 let eCar = new ElectricCar('Electric Car Co.', 'black', 263);
+console.log(eCar);
 // console.log(eCar.doors);         // returns the default, 2
 // spark.charge();                  // returns "Spark Motors is charging"
 // console.log(spark.brake());  // returns "Spark Motors is braking with the regenerative braking system"
+
+// REPASADO 1 VECES

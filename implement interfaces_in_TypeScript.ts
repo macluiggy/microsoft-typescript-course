@@ -45,8 +45,8 @@ function holaUser(hola: Hola["hello"], mia: Mia["mine"]) {
 type Saluda = Mia & Hola;
 
 let compa: Saluda = {
-    hello: "perro",
     mine: 344,
+    hello: "perro",
 };
 
 interface elmsOfArrays {

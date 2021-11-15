@@ -81,7 +81,7 @@ interface Message {
  //de que si son opcionales o no, ya que aqui el orden en el que se pone ? para que sean opcionales no importa
  //y este se hace en la interface o el typo, lo unico es que el numbre tiene que ser el mismo que se le da en
  //la interface para que reconozca cual es cual, sin importar el orden en que se ponga
- function displayMessage({text, sender}: Message) {
+ function displayMessage({text, sender='default value'}: Message) {
      console.log(`Message from ${sender}: ${text}`);
  }
  
@@ -89,7 +89,7 @@ interface Message {
 
  // Exercise - Fun with parameters
  let addThreeNumbers = (x: number, y: number, z?: number): number => z ? x + y + z : x + y;
-console.log( addThreeNumbers(1,3,)); //retorna NaN oprque la operacion es invalida
+console.log( addThreeNumbers(1,3,)); //retornaria NaN si no se pone una condicion oprque la operacion seria invalida
 console.log(addThreeNumbers(1,2,3,4)); //retorna 6 aunque se pasen mas argumentos de los necesarios, debido a que esto es hecho por javascript y si se pasan los argumentos necesarions como de parametros a javascript no le importa los que sobran, pero typescript si muestra el error
 
 let subtractThreeNumbers = (x: number, y: number, z = 100): number => x - y - z;
@@ -103,6 +103,9 @@ subtractThreeNumbers(10, 20, 15);   // returns -25
 interface Calculator {
     (x: number, y: number): number;
 }
+// type hola = {
+//     (x: string) : string
+// }
 let addNumbers7: Calculator = (x: number, y: number): number => x + y
 let substractNumbers7: Calculator = (x: number, y: number): number => x -y;
 //console.log(addNumbers7(1,2));
@@ -126,3 +129,4 @@ let saluda: Saluda | Saluda2 = (name: string, msg: string): string => `Message f
 let saluda2: Saluda | Saluda2 = (nombre: string, mensaje: string): string => `Message from ${nombre}: ${mensaje}`
 let saluda3: Saluda | Saluda2 = (namexd, msgxd) => `Message from ${namexd}: ${msgxd}`
 
+//REPASADO 1 VECES
