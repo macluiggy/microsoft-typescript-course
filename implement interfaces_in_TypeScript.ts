@@ -57,6 +57,7 @@ interface elmsOfArrays {
 type elmsOfArrays2 = {
     arr1: number[];
     arr2: Array<string>;
+    arr3: string[][]
 };
 
 let elmsOfArrays: elmsOfArrays = {
@@ -67,6 +68,7 @@ let elmsOfArrays: elmsOfArrays = {
 let elmsOfArrays2: elmsOfArrays2 = {
     arr1: [1, 2, 4, 8],
     arr2: ["que mas", "hello"],
+    arr3: [[''], ['ss']]
 };
 
 interface IceCream {
@@ -141,3 +143,5 @@ async function showPost() {
 //showPost();
 
 console.log('heehhe');
+
+// REPASADO 1 VECES
