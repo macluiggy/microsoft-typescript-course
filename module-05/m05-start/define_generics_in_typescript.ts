@@ -116,3 +116,38 @@ class processIdentity3<T, U> {
 }
 let processor3 = new processIdentity3<number, string>(100, 'Hello!');
 console.log(processor3.getIdentity());
+
+
+// Implement generics with custom types and classes
+class Car {
+    make: string = 'Generic Car';
+    doors: number = 4;
+}
+// en estas clases extendidas no es necesario indicar el typo para las propiedades que tienen el mismo nombre que la clase de la cual se extiende, esto es debido a que se esta sobreescribiendo el valor de la propiedad de la clase original, asi que toma el mismo tipo de este, si lo que se quiere es cambiar el typo de la clase de los hijos, se debe cambiar el typo de la propiedad del padre, asi se cambiara la propiedad para todos sus "hijos"
+class ElectricCar extends Car {
+    make = 'Electric Car';
+    doors = 4
+}
+class Truck extends Car {
+    make = 'Truck';
+    doors = 2
+}
+// para que typescrip sepa de dondo provienen las propiedades que se ponen en el console.log se tiene que extender de la clase que contien esas propiedades, en este caso es Car, pero dado que todas tienen las propiedades, se puede usar cualquiera de las clases, es como lo que se hace con las clases, se extiende para que las mismas propiedades se tengan en la clase extendida, es como si se dijera: "de esta clase T (ElectricCar o Truck) extiende los typos de la clase Car", esto sirve para contraer los posibles typos a solo el de la clase Car
+function accelerate<T extends Car/* | ElectricCar | Truck */> (car: T): T {
+    console.log(`All ${car.doors} doors are closed.`);
+    console.log(`The ${car.make} is now accelerating!`)
+    return car
+}
+
+let myElectricCar = new ElectricCar;
+accelerate<ElectricCar>(myElectricCar);
+let myTruck = new Truck;
+accelerate<Truck>(myTruck);
+let car = new Car;
+
+// interface Animal {
+//     legs: number,
+// }
+// interface Human extends Animal {
+//     smart: boolean,
+// }
