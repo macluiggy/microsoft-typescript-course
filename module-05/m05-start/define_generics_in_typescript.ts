@@ -25,7 +25,7 @@ function identity<T extends ValidTypes, U> (value: T, message: U) {
 //aqui se le pone el valor de cada generico, esto serian como los argumentos de una funcion a sus parametros, ponerlos es opcional, ya que al poner el arguemento de la funcion, typescript automaticamente detecta el tipo de valor para ese argumento
 let returnNumber = identity<number, string>(100, 'Hello!');      // OK
 let returnString = identity<string, string>('100', 'Hola!');     // OK
-let returnBoolean = identity<boolean, string>(true, 'Bonjour!'); // Error: Type 'boolean' does not satisfy the constraint 'ValidTypes'.
+//let returnBoolean = identity<boolean, string>(true, 'Bonjour!'); // Error: Type 'boolean' does not satisfy the constraint 'ValidTypes'.
 
 // aqui se va a extender tambien el typo, pero en este caso se usa keyof, este lo que hace es tomar los valores de las key de un objeto y este produce una union de string o numeros literales(string or numericc literal union), lo que quiere decir que los tipos de K solo pueden ser los valores que tienen las keys de T
 function getPets<T, K extends keyof T>(pet: T, key: K) {
@@ -38,7 +38,7 @@ let pets1 = { cats: 4, dogs: 3, parrots: 1, fish: 6 };
 let pets2 = { 1: "cats", 2: "dogs", 3: "parrots", 4: "fish"}
 
 console.log(getPets(pets1, "fish"));  // Returns 6
-console.log(getPets(pets2, "3"));     // Error
+//console.log(getPets(pets2, "3"));     // Error
 
 // Exercise - Implement generics with interfaces and classes
 interface Identity<T, U> {
@@ -71,6 +71,48 @@ function processIdentity<T, U> (value: T, message: U): T {
 //definimos una variable que guardara la funcion processIdentity, y le asignamos la interfaz ProcessIdentity con los tipos number y string, entonces podremos llamar a la funcion que se guardo en la variable, esta debera tener los tipos que se definieron en la misma, ya que la interfaz es una funcion, se debe aplicar de esta forma
 let processor: ProcessIdentity<number, string> = processIdentity;//esto es una funcion, pero processIdentity(12, 'jjj') representa un valor de tipo number, por eso no se puede aplicar la interfaz de esta forma
 let returnNumber3 = processor(100, 'Hello!');
-let returnString3 = processor('Hello!', 100);
+//let returnString3 = processor('Hello!', 100); //error
 // si no se le asigna la interfaz de forma explicita a la variable, typescript inferira los valores de esta
 let test = processIdentity(2, 'jj')
+
+
+// Declare a generic interface as a class type
+interface ProcessIdentity2<T, U> {
+    value: T;
+    message: U;
+    process(): T;
+}
+// en processIdentity2<X, Y> los valores X, Y representan parametros, mientras que en ProcessIdentity, estos mismos ya representan valores que son los "argumentos" de esta interfaz, osea que estos typos se definen en los argumentos que se pasan cuando se instancia la clase processIdentity2
+class processIdentity2<X, Y> implements ProcessIdentity2<X, Y> {
+    value: X;
+    message: Y;
+    constructor(val: X, msg: Y) {
+        this.value = val;
+        this.message = msg;
+    }
+    process() : X {
+        console.log(this.message);
+        return this.value
+    }
+}
+let processor2 = new processIdentity2<number, string>(100, 'Hello!');
+console.log(processor2.process());
+//processor.value = '100';       // Type check error
+
+// Define a generic class
+//tambien se puede definir la clase sin necesidad de una interfaz
+//esta clase es exactamente igual a la version 2 la unica diferencia es que esta no implementa la interfaz
+class processIdentity3<T, U> {
+    private _value: T;
+    private _message: U;
+    constructor(value: T, message: U) {
+        this._value = value;
+        this._message = message;
+    }
+    getIdentity() : T {
+        console.log(this._message);
+        return this._value
+    }
+}
+let processor3 = new processIdentity3<number, string>(100, 'Hello!');
+console.log(processor3.getIdentity());
