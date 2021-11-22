@@ -20,4 +20,6 @@ namespace AllGreetings {
 // returnGreeting("Hello"); // Returns error
 let {returnGreeting} = AllGreetings.Greetings
 returnGreeting("Bonjour"); // OK
-AllGreetings.GreetingsWithLength.returnGreeting("Hola"); // OK
+
+import greet = AllGreetings.GreetingsWithLength
+greet.returnGreeting("Hola"); // OK
