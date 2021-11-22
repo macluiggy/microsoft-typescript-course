@@ -29,7 +29,7 @@ function calculateInterestOnlyLoanPayment(loanTerms: Loan): string {
 
 function calculateConventionalLoanPayment(loanTerms: ConventionalLoan) {
     // Calculates the monthly payment of a conventional loan
-    const { interestRate, principal, months } = loanTerms;
+    const { interestRate, principal, months = 100 } = loanTerms;
     let interest: number = interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
     let payment: number;
     payment = principal * interest / (1 - (Math.pow(1 / (1 + interest), months)));

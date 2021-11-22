@@ -44,7 +44,7 @@ function buildArray(items: number, sortOrder: 'ascending' | 'descending') {
     let randomNumbers: number[] = [];
     let nextNumber: number;
     for (let counter = 0; counter < items; counter++) {
-        nextNumber = Math.ceil(Math.random() * (100 - 1));
+        nextNumber = Math.ceil(Math.random() * (99));
         if (randomNumbers.indexOf(nextNumber) === -1) {
           randomNumbers.push(nextNumber);
         } else {

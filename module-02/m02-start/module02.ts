@@ -69,7 +69,28 @@ function whichMonths(season: Season): string {
     return monthsInSeason;
 }
 
-console.log(whichMonths(Season.Fall));
+console.log(whichMonths(Season.Spring));
+
+enum Numbers {
+    one = 1,
+    two,
+    three,
+}
+function whichNumber(number: Numbers) {
+    let selection: string;
+    switch (number) {
+        case Numbers.one:
+            selection =  `You selected the number one: ${number}`
+            break;
+        case Numbers['two']:
+            selection =  `You selected the number two: ${number}`
+        default:
+            selection = 'You didnt select anything'
+            break;
+    }
+    return selection
+}
+console.log(whichNumber(Numbers.two));
 
 /* EXERCISE 4
    TODO: Declare the array as the type to match the type of the items in the array. */
