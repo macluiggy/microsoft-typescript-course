@@ -5,10 +5,9 @@ interface Vehicle {
   doors: number;
   accelerate(speed: number): string;
   brake(): string;
-  x;
   turn(direction: "left" | "right"): string;
 }
-class Car implements Vehicle {
+class Car1 implements Vehicle {
   //Properties, esta se usa para especificar el typo de la propiedad, se usa _ para diferenciarlos de los parametros que se usan en el construcor, aunque no son necesarios y puede tener el mismo nombre que los parametros
   private static numberOfCars: number = 0;
   _make: string;
@@ -23,7 +22,7 @@ class Car implements Vehicle {
     } else {
       throw new Error("Doors must be a multiple of 2");
     }
-    Car.numberOfCars++; //cada vez que se "construya" (instantiace) un nuevo carro, aumenta el numeros de carros a 1
+    Car1.numberOfCars++; //cada vez que se "construya" (instantiace) un nuevo carro, aumenta el numeros de carros a 1
   }
   // Accessors
   get make() {
@@ -63,13 +62,13 @@ class Car implements Vehicle {
   }
   // static
   public static getNumberOfCars(): number {
-    return Car.numberOfCars;
+    return Car1.numberOfCars;
   }
 }
 
-console.log(Car.getNumberOfCars()); //dara 0 ya que aun no se ha instanciado ningun carro
+console.log(Car1.getNumberOfCars()); //dara 0 ya que aun no se ha instanciado ningun carro
 
-let myCar1 = new Car("Cool Car Company", "blue", 2);
+let myCar1 = new Car1("Cool Car Company", "blue", 2);
 console.log(myCar1);
 
 // myCar1.worker() //esto dara error ya que este solo es accecible dentro de la clase
@@ -77,21 +76,21 @@ console.log(myCar1);
 // se podria usar/utilizar getColor como nombre del getter para evitar confuciones
 //console.log(myCar1._color);//devuelve el color del carro
 
-let myCar2 = new Car("Galaxy Motors", "red", 3 + 1);
+let myCar2 = new Car1("Galaxy Motors", "red", 3 + 1);
 //console.log(myCar2.color);//este en cambio devuelve el valor que retorna el getter color
 // se podria usar/utilizar getColor como nombre del getter para evitar confuciones
 //console.log(myCar2._color);//devuelve el color del carro, este caso no se muestra el error ya que se tiene que declarar un validacion en el construtor
 //myCar2.doors = 5 //en este caso si se muestra el error, ya que aqui se llama a el setter, que es el que contiene la validacion, para que la validacion se haga desde el principio se debe hacer en el construtor
 
-let myCar3 = new Car("Galaxy motors", "gray");
+let myCar3 = new Car1("Galaxy motors", "gray");
 // console.log(myCar3.doors); //este retorna 4 al ser el valor por defecto
 // console.log(myCar3.accelerate(35));
 // console.log(myCar3.brake());
 // console.log(myCar3.turn('right'));
 //console.log(myCar3.worker());
-console.log(Car.getNumberOfCars()); //dara 3 ya que hasta esta linea de codigo ya se han instanciado 3 carros
+console.log(Car1.getNumberOfCars()); //dara 3 ya que hasta esta linea de codigo ya se han instanciado 3 carros
 
-class ElectricCar extends Car {
+class ElectricCar1 extends Car1 {
   // Properties unique to ElectricCar
   private _range: number;
   // Constructor
@@ -117,10 +116,10 @@ class ElectricCar extends Car {
   }
 }
 
-var car = new ElectricCar("marca chevere", "yellow", 4, 4);
+var car = new ElectricCar1("marca chevere", "yellow", 4, 4);
 //console.log(Car.getNumberOfCars());
-let spark = new ElectricCar("Spark Motors", "silver", 124, 2);
-let eCar = new ElectricCar("Electric Car Co.", "black", 263);
+let spark = new ElectricCar1("Spark Motors", "silver", 124, 2);
+let eCar = new ElectricCar1("Electric Car Co.", "black", 263);
 console.log(eCar);
 // console.log(eCar.doors);         // returns the default, 2
 // spark.charge();                  // returns "Spark Motors is charging"
@@ -129,8 +128,13 @@ console.log(eCar);
 // REPASADO 2 VECES
 
 // creamos una casa
-
-class House {
+interface House {
+  doors: number;
+  windows: number;
+  bathrooms: number;
+  showDoors(): string; //
+}
+class House implements House {
   _doors: number;
   _windows: number;
   _bathrooms: number;
@@ -139,10 +143,20 @@ class House {
     this._windows = windows;
     this._bathrooms = bathrooms;
   }
-  get getDoors(): number { 
-      return this._doors
+  get getDoors(): number {
+    return this._doors;
   }
   showDoors(): string {
-      return `there are ${this.getDoors}`
+    return `there are ${this.getDoors} doors`;
+  }
+}
+
+var house = new House(4, 6, 2);
+console.log(house.showDoors());
+
+class smartHouse extends House {
+
+  constructor(doors: number, windows: number, bathrooms: number) {
+    super(doors, windows, bathrooms)
   }
 }
