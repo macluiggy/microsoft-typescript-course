@@ -153,10 +153,42 @@ class House implements House {
 
 var house = new House(4, 6, 2);
 console.log(house.showDoors());
-
-class smartHouse extends House {
-
-  constructor(doors: number, windows: number, bathrooms: number) {
-    super(doors, windows, bathrooms)
+interface SmartHouse extends House {
+  _isOpen: boolean;
+}
+class SmartHouse extends House implements SmartHouse {
+  _isOpen: boolean;
+  constructor(
+    doors: number,
+    windows: number,
+    bathrooms: number,
+    isOpen: boolean
+  ) {
+    super(doors, windows, bathrooms);
+    this._isOpen = isOpen;
+  }
+  private get isOpen(): boolean {
+    return this._isOpen;
+  }
+  private set isOpen(value: boolean) {
+    this._isOpen = value;
+  }
+  private getDoorState(val: boolean) {
+    let val2 = `${val}`
+    return {
+      true: "open",
+      false: "closed",
+    }[val2];
+  }
+  changeDoorState(val: boolean) {
+    this.isOpen = val
+  }
+  showDoorsState(): string {
+    return `The doors are ${this.getDoorState(this.isOpen)}`;
   }
 }
+var smartHouse = new SmartHouse(4, 6, 2, true);
+console.log(smartHouse.showDoorsState());
+smartHouse.changeDoorState(false);
+console.log(smartHouse.showDoorsState());
+

@@ -1,7 +1,7 @@
-function addNumbers (x: number, y: number): number {
-    return x + y;
- }
- addNumbers(1, 2);
+// function addNumbers (x: number, y: number): number {
+//     return x + y;
+//  }
+//  addNumbers(1, 2);
 
  let addNumbers2 = function (x: number, y: number): number {
     return x + y;
@@ -30,7 +30,7 @@ let addNumbers1 = function (x: number, y: number): number {
 }
 displayAlert(42)
 
-function sum(input: Array<number | string> | (number|string)[]): number {
+function sum(input: Array<number>): number {
     let total =  0;
     for(let count = 0; count < input.length; count++) {
         if(isNaN(input[count])){//aqui 
@@ -41,7 +41,7 @@ function sum(input: Array<number | string> | (number|string)[]): number {
     return total;
 }
 sum([5])
-sum([1, 'two', 3])
+// sum([1, 'two', 3]) // Type 'string' is not assignable to type 'number'.ts(2322)
 
 // FUN WITH Parameters
 function addNumbers4 (x: number, y: number): number {
@@ -90,7 +90,7 @@ interface Message {
  // Exercise - Fun with parameters
  let addThreeNumbers = (x: number, y: number, z?: number): number => z ? x + y + z : x + y;
 console.log( addThreeNumbers(1,3,)); //retornaria NaN si no se pone una condicion oprque la operacion seria invalida
-console.log(addThreeNumbers(1,2,3,4)); //retorna 6 aunque se pasen mas argumentos de los necesarios, debido a que esto es hecho por javascript y si se pasan los argumentos necesarions como de parametros a javascript no le importa los que sobran, pero typescript si muestra el error
+console.log(addThreeNumbers(1,2,3,/* 4 */)); //retorna 6 aunque se pasen mas argumentos de los necesarios, debido a que esto es hecho por javascript y si se pasan los argumentos necesarions como de parametros a javascript no le importa los que sobran, pero typescript si muestra el error
 
 let subtractThreeNumbers = (x: number, y: number, z = 100): number => x - y - z;
 subtractThreeNumbers(10, 20);       // returns -110 because 'z' has been assigned the value 100
