@@ -143,7 +143,7 @@ let myElectricCar = new ElectricCar;
 accelerate<ElectricCar>(myElectricCar);
 let myTruck = new Truck;
 accelerate<Truck>(myTruck);
-let car = new Car;
+var car = new Car;
 
 // interface Animal {
 //     legs: number,

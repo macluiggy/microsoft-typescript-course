@@ -1,10 +1,6 @@
 /*  Module 8: Organize code using TypeScript namespaces
     Lab Start */
 
-
-
-
-
 /*  TODO Add reference paths. */
 /// <reference path="module08_loans.ts" />
 /// <reference path="module08_loan-programs.ts" />
