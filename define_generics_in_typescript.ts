@@ -174,7 +174,7 @@ let myElectricCar = new ElectricCar();
 accelerate<ElectricCar>(myElectricCar);
 let myTruck = new Truck();
 accelerate<Truck>(myTruck);
-var car = new Car();
+var carro = new Car();
 
 // interface Animal {
 //     legs: number,
@@ -182,3 +182,5 @@ var car = new Car();
 // interface Human extends Animal {
 //     smart: boolean,
 // }
+
+// REPASADO 1 VECES

@@ -1,27 +1,27 @@
 // Overview of interfaces in TypeScript
 interface Employee2 {
-    firstName: string;
-    lastName: string;
-    fullName(): string;
+  firstName: string;
+  lastName: string;
+  fullName(): string;
 }
 let employee: Employee2 = {
-    firstName: "Emil",
-    lastName: "Andersson",
-    fullName: function (): string {
-        return this.firstName + " " + this.lastName;
-    },
+  firstName: "Emil",
+  lastName: "Andersson",
+  fullName: function (): string {
+    return this.firstName + " " + this.lastName;
+  },
 };
 
 //employee.firstName = 10;  //* Error - Type 'number' is not assignable to type 'string'
 //console.log(employee.fullName());s
 
 interface ValueReturned {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 function userData(age: number, name: string): ValueReturned {
-    return { age, name };
+  return { age, name };
 }
 
 //console.log(userData(182828, "elver"));
@@ -29,119 +29,126 @@ function userData(age: number, name: string): ValueReturned {
 //ya sea uno o varios como en un objeto, mientras que las interfaces se usan para definir la forma que
 //tienen los datos, por ejemplo, de un objeto
 type Hola = {
-    hello: string;
+  hello: string;
 };
 interface Mia {
-    mine: number;
+  mine: number;
 }
 //en ambos casos se pueden acceder a los typos como si fueran objetos con la sintaxis obj[key] = typo
 let hola: Hola["hello"];
 let mine: Mia["mine"];
 function holaUser(hola: Hola["hello"], mia: Mia["mine"]) {
-    return mia + hola;
+  return mia + hola;
 }
 
 //type Saluda = Mia['mine'] & Hola['hello']
-type Saluda = Mia & Hola;
+type Saluda =
+  | (Mia & Hola) /* | {
+    hello: string;
+  }
+| {
+    mine: number;
+  }; */
 
 let compa: Saluda = {
-    mine: 344,
-    hello: "perro",
+  mine: 344,
+  hello: "perro",
 };
 
 interface elmsOfArrays {
-    arr1: number[];
-    arr2: Array<string>;
-    arr3: boolean[];
+  arr1: number[];
+  arr2: Array<string>;
+  arr3: boolean[];
 }
 type elmsOfArrays2 = {
-    arr1: number[];
-    arr2: Array<string>;
-    arr3: string[][]
+  arr1: number[];
+  arr2: Array<string>;
+  arr3: string[][];
 };
 
 let elmsOfArrays: elmsOfArrays = {
-    arr1: [1, 2, 4, 8],
-    arr2: ["que mas", "hello"],
-    arr3: [0 > 0, 4 < 3, !"", true, false],
+  arr1: [1, 2, 4, 8],
+  arr2: ["que mas", "hello"],
+  arr3: [0 > 0, 4 < 3, !"", true, false],
 };
 let elmsOfArrays2: elmsOfArrays2 = {
-    arr1: [1, 2, 4, 8],
-    arr2: ["que mas", "hello"],
-    arr3: [[''], ['ss']]
+  arr1: [1, 2, 4, 8],
+  arr2: ["que mas", "hello"],
+  arr3: [[""], ["ss"],],
 };
 
 interface IceCream {
-    flavor: string;
-    scoops: number;
-    instructions?: string,
+  flavor: string;
+  scoops: number;
+  instructions?: string;
 }
 interface Sundae extends IceCream {
-    sauce: 'chocolate' | 'caramel' | 'strawberry',
-    nuts?: boolean,
-    whippedCream?: boolean,
-    instructions?: string,
+  sauce: "chocolate" | "caramel" | "strawberry";
+  nuts?: boolean;
+  whippedCream?: boolean;
+  instructions?: string;
 }
 let iceCream: IceCream = {
-    flavor: 'vanilla',
-    scoops: 2,
-}
+  flavor: "vanilla",
+  scoops: 2,
+};
 let myIceCream: Sundae = {
-    flavor: 'vanilla',
-    scoops: 2,
-    sauce: 'caramel',
-    nuts: false
-}
+  flavor: "vanilla",
+  scoops: 2,
+  sauce: "caramel",
+  nuts: false,
+};
 //console.log(iceCream.flavor);
 function tooManyScoops(dessert: Sundae) {
-    const { scoops } = dessert
-   if (scoops >= 4) {
-      return scoops + ' is too many scoops!';
-   } else {
-      return 'Your order will be ready soon!';
-   }
+  const { scoops } = dessert;
+  if (scoops >= 4) {
+    return scoops + " is too many scoops!";
+  } else {
+    return "Your order will be ready soon!";
+  }
 }
-let dessert: Sundae = {flavor: 'vanilla', scoops: 5, sauce: 'caramel'}
+let dessert: Sundae = { flavor: "vanilla", scoops: 5, sauce: "caramel" };
 //console.log(tooManyScoops(dessert));
 
-//esto quiere indicar que IceCreamArray esta indexado por un numero y este retorna un string
+//esto quiere indicar que IceCreamArray esta indexado por un numero y este retorna un string o mejor dicho, cada elemento del array es un string
 interface IceCreamArray {
-    [index: number]: string;
+  [indexd: number]: string;
 }
 
-let myIceCream2: IceCreamArray;
-myIceCream2 = ['chocolate', 'vanilla', 'strawberry']
-let myStr: string = myIceCream2[0]
+let myIceCream2: IceCreamArray | string[]
+myIceCream2 = ["chocolate", "vanilla", "strawberry"];
+let myStr: string = myIceCream2[0];
 
+import axios from "axios";
 
-import axios from 'axios';
-
-const fetchURL = 'https://jsonplaceholder.typicode.com/posts'
+const fetchURL = "https://jsonplaceholder.typicode.com/posts";
 // Interface describing the shape of our json data
 interface Post {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }
 async function fetchPosts(url: string) {
-    let response = await fetch(url);
-    let body = await response.json();
-    return body as Post[];//aqui dice que retorne el array body, y que cada elemento tenga la estructura de la interface Post[]
+  let response = await fetch(url);
+  let body = await response.json();
+  return body as Post[]; //aqui dice que retorne el array body, y que cada elemento tenga la estructura de la interface Post[]
 }
 async function showPost() {
-    let posts = await fetchPosts(fetchURL);
-    // Display the contents of the first item in the response
-    let post = posts[0];
-    console.log('Post #' + post.id)
-    // If the userId is 1, then display a note that it's an administrator
-    console.log('Author: ' + (post.userId === 1 ? "Administrator" : post.userId.toString()))
-    console.log('Title: ' + post.title)
-    console.log('Body: ' + post.body)
+  let posts = await fetchPosts(fetchURL);
+  // Display the contents of the first item in the response
+  let post = posts[0];
+  console.log("Post #" + post.id);
+  // If the userId is 1, then display a note that it's an administrator
+  console.log(
+    "Author: " + (post.userId === 1 ? "Administrator" : post.userId.toString())
+  );
+  console.log("Title: " + post.title);
+  console.log("Body: " + post.body);
 }
 
 //showPost();
 
-console.log('heehhe');
+console.log("heehhe");
 
 // REPASADO 1 VECES

@@ -126,7 +126,12 @@ type Saluda2 = (a: string, b: string) => string
 //tienen necesariamente que ser iguales a los de el type o interface solo el typo tiene que ser iguales, pero
 //los typos se pueden descartar si la variable se le asigna el type o la interface
 let saluda: Saluda | Saluda2 = (name: string, msg: string): string => `Message from ${name}: ${msg}`
-let saluda2: Saluda | Saluda2 = (nombre: string, mensaje: string): string => `Message from ${nombre}: ${mensaje}`
-let saluda3: Saluda | Saluda2 = (namexd, msgxd) => `Message from ${namexd}: ${msgxd}`
+let saluda2: Saluda | Saluda2 = (nombre: string, mensaje: string) => `Message from ${nombre}: ${mensaje}`
+let saluda3: Saluda | Saluda2 = (namexd, msgxd): string => `Message from ${namexd}: ${msgxd}`
+let saluda4: Saluda | Saluda2 = (namexd, msgxd) => `Message from ${namexd}: ${msgxd}`
 
-//REPASADO 1 VECES
+
+
+type StrNum = (var1: string, var2: number) => (string | number)[]
+let strNum: StrNum = (variable1, variable2) => [ variable1, variable2 ]
+//REPASADO 2 VECES
